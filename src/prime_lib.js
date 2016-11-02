@@ -1,7 +1,9 @@
 var primeLib = (function() {
 
   function isPrime(n) {
-    var prime, i;
+    // There's no obvious reason keep your index counter outside the loop. 
+    // It is supposed to be scoped to the block. I moved it in there.
+    var prime; 
 
     isPrime.answers = isPrime.answers || {};
 
@@ -11,7 +13,8 @@ var primeLib = (function() {
 
     prime = n > 1;
 
-    for (i = 2; i <= Math.sqrt(n); i++) {
+    // You are performing a length check for each iteration which increases the runtime remarkably
+    for (var i = 2, len = Math.sqrt(n); i <= len; i++) {
       if (n % i === 0) {
         prime = false;
         break;
@@ -47,6 +50,8 @@ var primeLib = (function() {
     var $table = $("<table><tbody>")
       .appendTo("#content");
 
+    // Just a side note. 'forEach'e is terrible on some IE browsers.
+    // And remarkable slow for large data set. Prefer 'for'  
     tableArr.forEach((row, i) => {
       var $tr = $("<tr>").appendTo($table);
       row.forEach((n, j) => {
@@ -72,7 +77,10 @@ var primeLib = (function() {
     );
   }
 
-  function init() {
+  // I don't see the use case for calling your init function on each load.
+  // Also, you don't need to wrap the task in a function as it automatically executes when the action is triggered.
+  
+  //  function init() {
     $("#btnGo").on("click", function(e) { 
       generateTable( $("#numberInput").val() );
     });
@@ -82,9 +90,9 @@ var primeLib = (function() {
           generateTable( $(this).val() );
       }
     });
-  }
+  // }
 
-  init();
+  // init();
  
   return {
     isPrime: isPrime,
@@ -94,7 +102,8 @@ var primeLib = (function() {
     isValid: isValid,
     generateTable: generateTable
   }
-})();
+})($); // I tried scoping the jQuery here. 
+       // This is pretty much useful if you're using browserify or webpack to serve your build files to the front end
 
 if (typeof module !== "undefined" && module.exports !== null) {
     module.exports = primeLib;

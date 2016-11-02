@@ -4,16 +4,21 @@
   "description": "Prime multiplication table generator.",
   "main": "",
   "scripts": {
-    "test": "mocha -R nyan --watch --colors tests/**/*-test.js",
+    "test": "mocha -R nyan --watch --colors tests/.setup.js tests1/**.js",
     "start": "./node_modules/.bin/http-server -a localhost -p 8081 -o"
   },
   "author": "Jeff Penketh",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.18.2",
     "chai": "^3.5.0",
     "http-server": "^0.9.0",
     "jquery": "~3.1.1",
     "jsdom": "^9.8.3",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6"
+  },
+  "dependencies": {
+    "sinon": "^1.17.6"
   }
 }
