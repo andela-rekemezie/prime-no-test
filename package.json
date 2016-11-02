@@ -1,0 +1,19 @@
+{
+  "name": "Prime_Multiplication_Table",
+  "version": "1.0.0",
+  "description": "Prime multiplication table generator.",
+  "main": "",
+  "scripts": {
+    "test": "mocha -R nyan --watch --colors tests/**/*-test.js",
+    "start": "./node_modules/.bin/http-server -a localhost -p 8081 -o"
+  },
+  "author": "Jeff Penketh",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "http-server": "^0.9.0",
+    "jquery": "~3.1.1",
+    "jsdom": "^9.8.3",
+    "mocha": "^3.1.2"
+  }
+}
